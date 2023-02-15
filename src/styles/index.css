@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --black-color: #13102D;
-  --primary-color: #FE876D;
+  --black-color: #13102d;
+  --primary-color: #fe876d;
   --gray-color: #828282;
 }
 
@@ -10,14 +10,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--black-color);
 }
 
-::placeholder{
+::placeholder {
   color: #aaaaaa;
 }
 
+.loading {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
 a {
   text-decoration: none;
@@ -25,7 +30,8 @@ a {
   font-size: 14px;
 }
 
-button, .add-discuss-btn {
+button,
+.add-discuss-btn {
   padding: 12px 24px;
   border: none;
   color: white;
@@ -34,18 +40,40 @@ button, .add-discuss-btn {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
 }
 
-button:hover, .add-discuss-btn:hover{
+.icons-btn{
+
+  padding: 4px 8px;
+  color: var(--black-color);
+  font-size: 14px;
+}
+
+.icons-btn > button {
+  background-color: transparent;
+  padding: 0;
+}
+
+.icons-btn > button:hover{
+  background-color: transparent;
+}
+
+.icons-btn:hover{
+  background-color: transparent;
+}
+
+button:hover,
+.add-discuss-btn:hover {
   background-color: #fb9d88;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 8px 12px;
   outline: none;
@@ -59,7 +87,8 @@ textarea {
   height: 150px;
 }
 
-input:active, input:focus{
+input:active,
+input:focus {
   border: 1.5px solid var(--black-color);
 }
 
@@ -67,7 +96,7 @@ p {
   font-size: 16px;
 }
 
-tr{
+tr {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -79,24 +108,24 @@ table {
   padding: 32px 24px;
 }
 
-td{
+td {
   padding: 12px 0;
 }
 
-header{
+header {
   position: sticky;
   top: 0;
   left: 0;
   background-color: white;
+  z-index: 10;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 80px;
+  padding: 16px 24px;
 }
-
 
 .navigation-left {
   display: flex;
@@ -105,11 +134,16 @@ nav {
   gap: 24px;
 }
 
-.navigation-right{
+.navigation-right {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 24px;
+}
+
+.navigation-right .avatar-image {
+  width: 28px;
+  border-radius: 50%;
 }
 
 .navigation-link {
@@ -124,6 +158,11 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  background-color: transparent;
+  color: var(--black-color);
+  padding: 8px 12px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .avatar {
@@ -138,7 +177,7 @@ nav {
   font-size: 14px;
 }
 
-.login-container{
+.login-container {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -147,8 +186,6 @@ nav {
   align-items: flex-start;
   gap: 32px;
 }
-
-
 
 .login-container > article {
   width: 100%;
@@ -168,9 +205,9 @@ nav {
   padding: 16px 24px;
 }
 .section-image {
-  width:100%;
+  width: 100%;
   min-height: 100vh;
-  background: linear-gradient(154.45deg, #FFC5B8 0%, #FFA48F 97.4%);
+  background: linear-gradient(154.45deg, #ffc5b8 0%, #ffa48f 97.4%);
   display: none;
   justify-content: center;
   align-items: center;
@@ -188,7 +225,7 @@ nav {
 .section-image > div {
   width: 100%;
   background: rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(2px); 
+  backdrop-filter: blur(2px);
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -211,7 +248,7 @@ nav {
   color: var(--black-color);
 }
 
-.form-section{
+.form-section {
   width: 100%;
   padding: 24px 0;
   display: flex;
@@ -223,7 +260,7 @@ nav {
 .form-heading {
   width: 100%;
   text-align: center;
-  padding : 12px;
+  padding: 12px;
 }
 
 .form-heading > h2 {
@@ -237,7 +274,7 @@ nav {
   line-height: 24px;
 }
 
-form{
+form {
   width: 100%;
   display: flex;
   justify-items: flex-start;
@@ -258,7 +295,6 @@ form > button {
   width: 100%;
 }
 
-
 .to-register-link {
   margin-top: 24px;
   display: flex;
@@ -275,9 +311,8 @@ form > button {
   font-weight: 500;
 }
 
-
 .App > main {
-  padding: 24px 120px;
+  padding: 24px 40px;
   margin-bottom: 120px;
 }
 
@@ -302,7 +337,7 @@ form > button {
   padding: 12px 0;
 }
 
-.hero{
+.hero {
   padding: 24px 0;
   display: flex;
   justify-content: space-between;
@@ -314,16 +349,16 @@ form > button {
   font-size: 14px;
 }
 
-.category-tags{
-  padding: 0 24px ;
-  margin-top: 16px;
+.category-tags {
+  padding: 0 24px;
+  margin-top: 24px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
 }
 
-.tags{
+.tags {
   width: fit-content;
   padding: 12px 24px;
   border: 1px solid var(--gray-color);
@@ -334,17 +369,17 @@ form > button {
   background-color: transparent;
 }
 
-.tags:hover{
+.tags:hover {
   background-color: transparent;
 }
 
-.tags.active{
+.tags.active {
   background-color: var(--primary-color);
   color: white;
-  border: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 
-.cards-container{
+.cards-container {
   padding: 0 24px;
   display: flex;
   flex-direction: column;
@@ -353,7 +388,7 @@ form > button {
   gap: 32px;
 }
 
-.card{
+.card {
   width: 100%;
   overflow: hidden;
   padding: 24px 0;
@@ -374,15 +409,15 @@ form > button {
   text-overflow: ellipsis;
 }
 
-.card-title{
+.card-title {
   font-size: 24px;
   font-weight: 700;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   color: var(--primary-color);
   text-overflow: ellipsis;
 }
 
-.card-author{
+.card-author {
   color: var(--gray-color);
   font-size: 14px;
 }
@@ -398,15 +433,15 @@ form > button {
   width: 100%;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.card-tags > p{
+.card-tags > p {
   padding: 8px 16px;
   font-size: 16px;
   margin-top: 16px;
 }
-.card-footer{
+.card-footer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -422,12 +457,13 @@ form > button {
   justify-content: center;
   align-items: center;
   gap: 4px;
-
 }
-.like-thread, .unlike-thread {
+.like-thread,
+.unlike-thread {
   cursor: pointer;
 }
-.reply-thread p, .time-thread{
+.reply-thread p,
+.time-thread {
   color: var(--gray-color);
 }
 
@@ -444,7 +480,6 @@ form > button {
 .detail-container {
   width: 100%;
   min-height: 100vh;
-
 }
 
 .details {
@@ -458,14 +493,14 @@ form > button {
   width: 100%;
   -webkit-line-clamp: initial;
   -webkit-box-orient: vertical;
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .detail-container .card-tags {
   margin-bottom: 32px;
 }
 
-.add-comment-container{
+.add-comment-container {
   padding: 32px 0;
   display: flex;
   justify-content: center;
@@ -474,6 +509,51 @@ form > button {
   flex-direction: column;
 }
 
+.comment {
+  width: 100%;
+  padding: 24px 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  flex-direction: column;
+  border-bottom: 1px solid var(--gray-color);
+  margin-bottom: 24px;
+}
+.comment .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.comment p {
+  font-size: 14px;
+}
+
+.comment .header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment .content {
+  width: 100%;
+  padding: 8px 0;
+}
+
+.comment .content p {
+  color: var(--gray-color);
+}
+
+.comment .liked {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
 
 @media screen and (min-width: 1200px) {
   body {
@@ -482,7 +562,16 @@ form > button {
   }
 }
 @media screen and (min-width: 958px) {
-  .login-container{
+  .App > main {
+    padding: 24px 120px;
+    margin-bottom: 120px;
+  }
+
+  nav {
+    padding: 16px 80px;
+  }
+
+  .login-container {
     flex-direction: row;
   }
 

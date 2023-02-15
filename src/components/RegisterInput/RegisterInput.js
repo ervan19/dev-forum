@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useInput from '../../hooks/useInput';
 
-export default function Registernput() {
+export default function Registernput({ register }) {
   const [name, setName] = useInput();
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
@@ -25,7 +26,13 @@ export default function Registernput() {
           required
         />
       </label>
-      <button type="submit">Masuk</button>
+      <button type="button" onClick={() => register({ name, email, password })}>
+        Masuk
+      </button>
     </form>
   );
 }
+
+Registernput.propTypes = {
+  register: PropTypes.func.isRequired,
+};

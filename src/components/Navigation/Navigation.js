@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { HiLogout } from 'react-icons/hi';
 import BrandApp from '../BrandApp/BrandApp';
 
-export default function Navigation() {
+export default function Navigation({ authUser, logoutHandler }) {
+  const { id, avatar, name } = authUser;
   return (
     <nav>
       <div className="navigation-left">
@@ -15,14 +17,25 @@ export default function Navigation() {
       </div>
       <div className="navigation-right">
         <div className="avatar">
-          <p>Hope Point</p>
-          <img src="/avatar.png" alt="" />
+          <p>{name}</p>
+          <img className="avatar-image" src={avatar} alt={id} />
         </div>
-        <Link to="/" className="logout-btn">
+        <button type="button" className="logout-btn" onClick={logoutHandler}>
           Logout
           <HiLogout />
-        </Link>
+        </button>
       </div>
     </nav>
   );
 }
+
+const authUserShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
+
+Navigation.propTypes = {
+  authUser: PropTypes.shape(authUserShape).isRequired,
+  logoutHandler: PropTypes.func.isRequired,
+};

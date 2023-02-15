@@ -4,7 +4,10 @@ const api = (() => {
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {
       ...options,
-      Authorization: `Baerer ${getAccessToken()}`,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
     });
   }
 
@@ -45,10 +48,10 @@ const api = (() => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: {
+      body: JSON.stringify({
         email,
         password,
-      },
+      }),
     });
 
     const responseJson = await response.json();
@@ -85,7 +88,7 @@ const api = (() => {
   }
 
   async function getOwnProfile() {
-    const response = await fetch(`${BASE_URL}/users/me`);
+    const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
 
     const responseJson = await response.json();
 
@@ -232,11 +235,11 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const {
-      data: { vote },
-    } = responseJson;
+    // const {
+    //   data: { vote },
+    // } = responseJson;
 
-    return vote;
+    // return vote;
   }
 
   async function downVoteThread(id) {
@@ -261,11 +264,31 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const {
-      data: { vote },
-    } = responseJson;
+    // const {
+    //   data: { vote },
+    // } = responseJson;
 
-    return vote;
+    // return vote;
+  }
+
+  async function neutralizeThreadVote(id) {
+    const response = await _fetchWithAuth(`${BASE_URL}/${id}/neutral-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        threadID: id,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
   }
 
   return {
@@ -282,6 +305,7 @@ const api = (() => {
     getLeaderboards,
     upVoteThread,
     downVoteThread,
+    neutralizeThreadVote,
   };
 })();
 

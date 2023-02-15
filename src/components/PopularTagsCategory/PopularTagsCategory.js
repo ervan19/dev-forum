@@ -1,31 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-export default function PopularTagsCategory() {
-  const tags = [
-    {
-      id: 1,
-      name: '#react',
-    },
-    {
-      id: 2,
-      name: '#introduction',
-    },
-    {
-      id: 3,
-      name: '#redux',
-    },
-  ];
+export default function PopularTagsCategory({ threads }) {
+  const [tagActive, setTagActive] = useState(null);
+
+  function onTagsHandler(index) {
+    setTagActive(index);
+
+    if (tagActive === index) {
+      setTagActive(null);
+    }
+  }
 
   return (
     <div className="popular-tags-category">
       <h1>Kategori Populer</h1>
       <div className="category-tags">
-        {tags.map((tag) => (
-          <span role="button" tabIndex={0} className="tags" key={tag.id}>
-            {tag.name}
-          </span>
-        ))}
+        {threads.map((thread, index) => {
+          console.log(thread.category);
+          return (
+            <span
+              role="button"
+              tabIndex={0}
+              className={tagActive === index ? 'tags active' : 'tags'}
+              key={thread.id}
+              id={thread.id}
+              onClick={() => onTagsHandler(index)}
+            >
+              {thread.category}
+            </span>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+PopularTagsCategory.propTypes = {
+  threads: PropTypes.objectOf(PropTypes.string).isRequired,
+};

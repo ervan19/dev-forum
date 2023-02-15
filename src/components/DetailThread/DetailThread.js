@@ -1,7 +1,6 @@
 import React from 'react';
-import CardFooter from '../CardFooter/CardFooter';
 
-export default function Details() {
+export default function DetailThread() {
   return (
     <div className="details">
       <div className="card-text">
@@ -34,7 +33,6 @@ export default function Details() {
       <div className="card-tags">
         <p className="tags">#react</p>
       </div>
-      <CardFooter />
     </div>
   );
 }
