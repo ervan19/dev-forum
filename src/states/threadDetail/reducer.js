@@ -9,16 +9,18 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.TOGGLE_UP_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
-        upVote: threadDetail.upVoted.include(action.payload.userId)
-          ? threadDetail.upVote.filter((id) => id !== action.payload.userId)
-          : threadDetail.upVote.concat(action.payload.userId),
+        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
+          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : threadDetail.upVotesBy.concat(action.payload.userId),
       };
     case ActionType.TOGGLE_DOWN_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
-        downVote: threadDetail.downVoted.include(action.payload.userId)
-          ? threadDetail.downVote.filter((id) => id !== action.payload.userId)
-          : threadDetail.downVote.concat(action.payload.userId),
+        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
+          ? threadDetail.downVotesBy.filter(
+            (id) => id !== action.payload.userId,
+          )
+          : threadDetail.downVotesBy.concat(action.payload.userId),
       };
     default:
       return threadDetail;

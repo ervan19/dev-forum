@@ -25,13 +25,14 @@ export default function ThreadItem({
   downVote,
   createdAt,
 }) {
-  const isThreadUpvote = upVotesBy.includes(authUser);
-  const isThreadDownvote = downVotesBy.includes(authUser);
+  const isThreadUpVoted = upVotesBy.includes(authUser);
+  const isThreadDownVoted = downVotesBy.includes(authUser);
 
   const onLikeHandler = (event) => {
     event.stopPropagation();
     upVote(id);
   };
+
   const onUnlikeHandler = (event) => {
     event.stopPropagation();
     downVote(id);
@@ -39,25 +40,25 @@ export default function ThreadItem({
 
   return (
     <div className="card">
-      <div className="card-body" id={id}>
+      <div className="card-body">
         <div className="card-text">
           <p className="card-author">
             Dibuat oleh
             <span>{user.name}</span>
           </p>
-          <Link to="/detail" className="card-title">
+          <Link to={`/detail/${id}`} className="card-title">
             {title}
           </Link>
           <p className="card-content">{parser(body)}</p>
         </div>
         <div className="card-tags">
-          <p className="tags">{category}</p>
+          <p className="tags">{`#${category}`}</p>
         </div>
       </div>
       <div className="card-footer">
         <p className="icons-btn like-thread">
           <button type="button" tabIndex={0} onClick={onLikeHandler}>
-            {isThreadUpvote ? (
+            {isThreadUpVoted ? (
               <HiThumbUp size={16} stroke="#13102D" />
             ) : (
               <HiOutlineThumbUp size={16} stroke="#13102D" />
@@ -65,9 +66,9 @@ export default function ThreadItem({
           </button>
           {upVotesBy.length}
         </p>
-        <p className="icons-btn like-thread">
+        <p className="icons-btn unlike-thread">
           <button type="button" tabIndex={0} onClick={onUnlikeHandler}>
-            {isThreadDownvote ? (
+            {isThreadDownVoted ? (
               <HiThumbDown size={16} stroke="#13102D" />
             ) : (
               <HiOutlineThumbDown size={16} stroke="#13102D" />
@@ -97,7 +98,7 @@ const threadItemShape = {
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   createdAt: PropTypes.string.isRequired,
-  totalComments: PropTypes.number,
+  totalComments: PropTypes.number.isRequired,
   authUser: PropTypes.string.isRequired,
   user: PropTypes.shape(userShape).isRequired,
 };

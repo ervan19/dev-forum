@@ -1,38 +1,91 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  HiOutlineThumbUp,
+  HiOutlineThumbDown,
+  HiThumbUp,
+  HiThumbDown,
+} from 'react-icons/hi';
+import { HiArrowUturnLeft } from 'react-icons/hi2';
+import parser from 'html-react-parser';
+import { postedAt } from '../../utils';
 
-export default function DetailThread() {
+export default function DetailThread({
+  id,
+  title,
+  category,
+  body,
+  owner,
+  comments,
+  createdAt,
+  upVotesBy,
+  downVotesBy,
+  authUser,
+  upVote,
+  downVote,
+}) {
+  const isThreadUpVoted = upVotesBy.includes(authUser);
+  const isThreadDownVoted = downVotesBy.includes(authUser);
+
   return (
     <div className="details">
       <div className="card-text">
         <p className="card-author">
           Dibuat oleh
-          <span> Dimas Saputra</span>
+          <span>{owner.name}</span>
         </p>
-        <h3 className="card-title">Ceritakan pengelaman belajar di Dicoding</h3>
-        <p className="card-content">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim sunt
-          maxime voluptate dicta esse dolore? Quas dicta optio, assumenda
-          officia quam incidunt doloremque aliquam iusto enim quisquam deleniti
-          exercitationem itaque. Repudiandae natus harum et corporis totam
-          ratione ab tempore reiciendis exercitationem possimus debitis earum
-          corrupti beatae ad aspernatur quis minus nam, pariatur inventore
-          nesciunt cumque? Dolore, et. Impedit, modi dicta? Aspernatur at
-          placeat labore ad et, minima facilis repudiandae ipsam sequi, quaerat
-          unde nobis nemo debitis non? Cum magnam assumenda odio temporibus,
-          dolorem quis natus eaque facilis corporis reiciendis odit! Delectus
-          quibusdam enim magnam maxime voluptatum illum iusto maiores laborum
-          recusandae obcaecati! Pariatur asperiores esse modi excepturi nulla!
-          Veritatis nostrum perferendis praesentium ea sint rem, voluptate
-          laborum nobis doloribus quibusdam. Voluptatibus cumque eaque
-          perspiciatis id voluptatem iure porro rerum commodi natus quisquam?
-          Vel dolores aspernatur nisi illo quaerat doloribus facere. Officiis
-          distinctio dolore repudiandae adipisci labore, dicta minus delectus
-          id!
-        </p>
+        <h3 className="card-title">{title}</h3>
+        <p className="card-content">{parser(body)}</p>
       </div>
       <div className="card-tags">
-        <p className="tags">#react</p>
+        <p className="tags">{`#${category}`}</p>
+      </div>
+      <div className="card-footer">
+        <p className="icons-btn like-thread">
+          <button type="button" tabIndex={0} onClick={() => upVote(id)}>
+            {isThreadUpVoted ? (
+              <HiThumbUp size={16} stroke="#13102D" />
+            ) : (
+              <HiOutlineThumbUp size={16} stroke="#13102D" />
+            )}
+          </button>
+          {upVotesBy.length}
+        </p>
+        <p className="icons-btn unlike-thread">
+          <button type="button" tabIndex={0} onClick={() => downVote(id)}>
+            {isThreadDownVoted ? (
+              <HiThumbDown size={16} stroke="#13102D" />
+            ) : (
+              <HiOutlineThumbDown size={16} stroke="#13102D" />
+            )}
+          </button>
+          {downVotesBy.length}
+        </p>
+        <div className="icons-btn reply-thread">
+          <HiArrowUturnLeft size={16} fill="#828282" />
+          <p>{comments.length}</p>
+        </div>
+        <p className="time-thread">{postedAt(createdAt)}</p>
       </div>
     </div>
   );
 }
+
+const ownerShape = {
+  name: PropTypes.string.isRequired,
+};
+
+DetailThread.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  owner: PropTypes.shape(ownerShape).isRequired,
+  createdAt: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.string).isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authUser: PropTypes.string.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired,
+};

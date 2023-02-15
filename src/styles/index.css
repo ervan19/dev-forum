@@ -6,6 +6,15 @@
   --gray-color: #828282;
 }
 
+#root {
+  position: relative;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +39,11 @@ a {
   font-size: 14px;
 }
 
-button,
+button {
+  cursor: pointer;
+}
+
+.btn,
 .add-discuss-btn {
   padding: 12px 24px;
   border: none;
@@ -47,27 +60,34 @@ button,
   gap: 4px;
 }
 
-.icons-btn{
-
+.icons-btn {
   padding: 4px 8px;
   color: var(--black-color);
   font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 }
 
 .icons-btn > button {
   background-color: transparent;
   padding: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.icons-btn > button:hover{
+.icons-btn > button:hover {
   background-color: transparent;
 }
 
-.icons-btn:hover{
+.icons-btn:hover {
   background-color: transparent;
 }
 
-button:hover,
+.btn:hover,
 .add-discuss-btn:hover {
   background-color: #fb9d88;
 }
@@ -163,6 +183,7 @@ nav {
   padding: 8px 12px;
   font-weight: 400;
   font-size: 14px;
+  border: none;
 }
 
 .avatar {
@@ -202,10 +223,16 @@ nav {
 
 .sign-form {
   width: 100%;
+  min-height: 100vh;
   padding: 16px 24px;
 }
+
 .section-image {
-  width: 100%;
+  position: absolute;
+  width: 50%;
+  top: 0;
+  right: 0;
+  bottom: 0;
   min-height: 100vh;
   background: linear-gradient(154.45deg, #ffc5b8 0%, #ffa48f 97.4%);
   display: none;
@@ -423,7 +450,8 @@ form > button {
 }
 
 .card-author > span {
-  font-weight: 600;
+  font-weight: 700;
+  margin-left: 4px;
 }
 
 .card-content {
@@ -452,12 +480,6 @@ form > button {
   font-size: 14px;
 }
 
-.icons-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
 .like-thread,
 .unlike-thread {
   cursor: pointer;
@@ -572,6 +594,7 @@ form > button {
   }
 
   .login-container {
+    width: 50%;
     flex-direction: row;
   }
 
@@ -580,6 +603,7 @@ form > button {
   }
   .section-image {
     display: flex;
+    min-height: 100vh;
   }
   .section-image > div > h1 {
     font-size: 52px;

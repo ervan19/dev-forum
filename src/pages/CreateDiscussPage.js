@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import { asyncCreateThread } from '../states/threads/action';
 
@@ -7,13 +8,14 @@ export default function CreateDisscussPage() {
   const [title, setTitle] = useInput('');
   const [body, setBody] = useInput('');
   const [category, setCategory] = useInput('');
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   function onSubmitNewThread(e) {
     e.preventDefault();
     dispatch(asyncCreateThread({ title, body, category }));
-    window.open('/');
+    navigate('/');
   }
 
   return (
@@ -32,7 +34,7 @@ export default function CreateDisscussPage() {
           Diskusi
           <textarea name="body" id="" value={body} onChange={setBody} />
         </label>
-        <button type="submit" onClick={onSubmitNewThread}>
+        <button type="submit" className="btn" onClick={onSubmitNewThread}>
           Buat Diskusi
         </button>
       </form>

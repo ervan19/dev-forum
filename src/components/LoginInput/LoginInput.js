@@ -20,7 +20,11 @@ export default function LoginInput({ login }) {
           required
         />
       </label>
-      <button type="button" onClick={() => login({ email, password })}>
+      <button
+        type="button"
+        className="btn"
+        onClick={() => login({ email, password })}
+      >
         Masuk
       </button>
     </form>

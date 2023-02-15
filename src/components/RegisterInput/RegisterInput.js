@@ -26,7 +26,11 @@ export default function Registernput({ register }) {
           required
         />
       </label>
-      <button type="button" onClick={() => register({ name, email, password })}>
+      <button
+        type="button"
+        className="btn"
+        onClick={() => register({ name, email, password })}
+      >
         Masuk
       </button>
     </form>

@@ -5,7 +5,7 @@ import { HiPlus } from 'react-icons/hi';
 import ThreadList from '../components/ThreadList/ThreadList';
 import asyncPopulateUsersAndThreads from '../states/shared/action';
 import {
-  asyncNeutralizeVoteThread,
+  // asyncNeutralizeVoteThread,
   asyncToggleUpVoteThread,
   asyncToggleDownVoteThread,
 } from '../states/threads/action';
@@ -27,12 +27,10 @@ export default function HomePage() {
 
   const onUpVote = (id) => {
     dispatch(asyncToggleUpVoteThread(id));
-    dispatch(asyncNeutralizeVoteThread(id));
   };
 
   const onDownVote = (id) => {
     dispatch(asyncToggleDownVoteThread(id));
-    dispatch(asyncNeutralizeVoteThread(id));
   };
 
   const threadList = threads.map((thread) => ({
