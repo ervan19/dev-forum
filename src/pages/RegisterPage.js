@@ -1,12 +1,12 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import AsideImage from '../components/AsideImage/AsideImage';
-import BrandApp from '../components/BrandApp/BrandApp';
-import FormHeading from '../components/FormHeading/FormHeading';
-import Registernput from '../components/RegisterInput/RegisterInput';
-import SwitchFormLink from '../components/SwitchFormLink/SwitchFormLink';
-import { asyncRegisterUser } from '../states/users/action';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import AsideImage from "../components/AsideImage/AsideImage";
+import BrandApp from "../components/BrandApp/BrandApp";
+import FormHeading from "../components/FormHeading/FormHeading";
+import Registernput from "../components/RegisterInput/RegisterInput";
+import SwitchFormLink from "../components/SwitchFormLink/SwitchFormLink";
+import { asyncRegisterUser } from "../states/users/action";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function RegisterPage() {
 
   const onRegister = ({ name, email, password }) => {
     dispatch(asyncRegisterUser({ name, email, password }));
-    navigate('/');
+    navigate("/");
   };
 
   return (

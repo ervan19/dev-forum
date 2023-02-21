@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ThreadItem, { threadItemShape } from '../ThreadItem/ThreadItem';
+import React from "react";
+import PropTypes from "prop-types";
+import ThreadItem, { threadItemShape } from "../ThreadItem/ThreadItem";
 
 export default function ThreadList({ threads, upVote, downVote }) {
   return (

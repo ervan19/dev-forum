@@ -1,27 +1,26 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import DetailThread from '../components/DetailThread/DetailThread';
-import CommentCard from '../components/CommentCard/CommentCard';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import DetailThread from "../components/DetailThread/DetailThread";
+import CommentCard from "../components/CommentCard/CommentCard";
 import {
   asyncReceiveThreadDetail,
   asyncToggleUpVoteThreadDetail,
   asyncToggleDownVoteThreadDetail,
-} from '../states/threadDetail/action';
+} from "../states/threadDetail/action";
+import FormComment from "../components/FormComment/FormComment";
+import { asyncCreateComment } from "../states/comment/action";
 
 export default function DetailPage() {
   const { id } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states);
+  const [content, setContent] = useState("");
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
-
-  if (!threadDetail) {
-    return null;
-  }
 
   const onUpVoteThread = () => {
     dispatch(asyncToggleUpVoteThreadDetail());
@@ -31,27 +30,44 @@ export default function DetailPage() {
     dispatch(asyncToggleDownVoteThreadDetail());
   };
 
+  const onSetContentHandler = (e) => {
+    setContent(e.target.innerHTML);
+  };
+
+  const onPostComment = (e) => {
+    e.preventDefault();
+    dispatch(asyncCreateComment({ id, content }));
+    setContent("");
+  };
+
+  if (!threadDetail) {
+    return null;
+  }
+
+  // const { comments } = threadDetail;
+
   return (
     <div className="detail-container">
       <DetailThread
-        {...threadDetail}
+        authUser={authUser.id}
         upVote={onUpVoteThread}
         downVote={onDownVoteThread}
-        authUser={authUser.id}
+        {...threadDetail}
       />
       <div className="add-comment-container">
         <h3>Beri Komentar</h3>
-        <form className="addComment">
-          <textarea />
-          <button type="submit" className="btn">
-            Kirim
-          </button>
-        </form>
+        <FormComment
+          setInput={onSetContentHandler}
+          postHandler={onPostComment}
+        />
       </div>
       <div className="comment-section">
-        <h3>Komentar (2)</h3>
+        <h3>
+          Komentar
+          <span>Test</span>
+        </h3>
         <div className="comments">
-          <CommentCard {...threadDetail} />
+          <CommentCard authUser={authUser.id} {...threadDetail} />
         </div>
       </div>
     </div>

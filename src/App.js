@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Loading from './components/Loading/Loading';
-import Navigation from './components/Navigation/Navigation';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import HomePage from './pages/HomePage';
-import DetailPage from './pages/DetailPage';
-import CreateDisscussPage from './pages/CreateDiscussPage';
-import LeaderboardsPage from './pages/Leaderboards';
-import { asyncPreloadProcess } from './states/isPreload/action';
-import { asyncUnsetAuthUser } from './states/authUser/action';
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "./components/Loading/Loading";
+import Navigation from "./components/Navigation/Navigation";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import HomePage from "./pages/HomePage";
+import DetailPage from "./pages/DetailPage";
+import CreateDisscussPage from "./pages/CreateDiscussPage";
+import LeaderboardsPage from "./pages/Leaderboards";
+import { asyncPreloadProcess } from "./states/isPreload/action";
+import { asyncUnsetAuthUser } from "./states/authUser/action";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
-    (states) => states,
+    (states) => states
   );
   const dispatch = useDispatch();
 

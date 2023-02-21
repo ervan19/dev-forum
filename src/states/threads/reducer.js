@@ -1,4 +1,4 @@
-import { ActionType } from './action';
+import { ActionType } from "./action";
 
 function threadsReducer(threads = [], action = {}) {
   switch (action.type) {
@@ -11,7 +11,7 @@ function threadsReducer(threads = [], action = {}) {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
-            upVotesBy: threads.upVotesBy.includes(action.payload.userId)
+            upVotesBy: thread.upVotesBy.includes(action.payload.userId)
               ? thread.upVotesBy.filter((id) => id !== action.payload.userId)
               : thread.upVotesBy.concat([action.payload.userId]),
           };
@@ -23,7 +23,7 @@ function threadsReducer(threads = [], action = {}) {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
-            downVotesBy: threads.downVotesBy.includes(action.payload.userId)
+            downVotesBy: thread.downVotesBy.includes(action.payload.userId)
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.downVotesBy.concat([action.payload.userId]),
           };
@@ -37,7 +37,7 @@ function threadsReducer(threads = [], action = {}) {
           return {
             ...thread,
             neutralizeVotes: thread.neutralizeVotes.includes(action.payload.id)
-              ? threads.filter((id) => id !== action.payload.userId)
+              ? thread.filter((id) => id !== action.payload.userId)
               : thread.neutralizeVotes.concat([action.payload.userId]),
           };
         }

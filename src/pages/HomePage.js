@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { HiPlus } from 'react-icons/hi';
-import ThreadList from '../components/ThreadList/ThreadList';
-import asyncPopulateUsersAndThreads from '../states/shared/action';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { HiPlus } from "react-icons/hi";
+import ThreadList from "../components/ThreadList/ThreadList";
+import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 import {
   // asyncNeutralizeVoteThread,
   asyncToggleUpVoteThread,
   asyncToggleDownVoteThread,
-} from '../states/threads/action';
+} from "../states/threads/action";
 
 // import PopularTagsCategory from '../components/PopularTagsCategory/PopularTagsCategory';
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   --black-color: #13102d;
@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--black-color);
 }
 
@@ -145,39 +145,45 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
+  gap: 24px;
 }
 
-.navigation-left {
+.navigation-brand {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 24px;
 }
+.navigation-link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-.navigation-right {
+.navigation-button, .navigation {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 }
 
-.navigation-right .avatar-image {
+.navigation {
+  gap: 32px;
+}
+
+.navigation-button .avatar-image {
   width: 28px;
   border-radius: 50%;
 }
 
-.navigation-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-}
+
 
 .logout-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background-color: transparent;
   color: var(--black-color);
   padding: 8px 12px;
@@ -190,7 +196,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   font-weight: 600;
 }
 
@@ -310,7 +316,8 @@ form {
   gap: 24px;
 }
 
-form > label {
+form > label,
+.label {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -349,15 +356,23 @@ form > button {
   padding: 24px 0;
 }
 
-.leaderboard-user {
+.leaderboard-user,
+.user-avatar {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
 
-.leaderboard-user > p {
+.leaderboard-user > p,
+.user-avatar > p {
   font-weight: 600;
+}
+
+.leaderboard-user > img,
+.user-avatar > img {
+  width: 32px;
+  border-radius: 50%;
 }
 
 .list-user {
@@ -509,6 +524,22 @@ form > button {
   border-bottom: 1.5px solid var(--gray-color);
 }
 
+.comment-field-input {
+  width: 100%;
+  min-height: 200px;
+  padding: 8px 12px;
+  outline: none;
+  border-radius: 4px;
+  border: 1.5px solid #cecece;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.comment-field-input:active,
+.comment-field-input:focus {
+  border: 1.5px solid var(--black-color);
+}
+
 .detail-container .card-content {
   line-height: 24px;
   display: -webkit-box;
@@ -520,6 +551,23 @@ form > button {
 
 .detail-container .card-tags {
   margin-bottom: 32px;
+}
+
+.card-detail-author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.card-detail-author img {
+  width: 32px;
+  border-radius: 150%;
+}
+
+.card-detail-author p {
+  font-weight: 600;
 }
 
 .add-comment-container {

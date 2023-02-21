@@ -1,16 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   HiOutlineThumbUp,
   HiOutlineThumbDown,
   HiThumbUp,
   HiThumbDown,
-} from 'react-icons/hi';
-import { HiArrowUturnLeft } from 'react-icons/hi2';
-import parser from 'html-react-parser';
-import { postedAt } from '../../utils';
+} from "react-icons/hi";
+import { HiArrowUturnLeft } from "react-icons/hi2";
+import parser from "html-react-parser";
+import { postedAt } from "../../utils";
 
 export default function DetailThread({
+  authUser,
+  upVote,
+  downVote,
   id,
   title,
   category,
@@ -20,9 +23,6 @@ export default function DetailThread({
   createdAt,
   upVotesBy,
   downVotesBy,
-  authUser,
-  upVote,
-  downVote,
 }) {
   const isThreadUpVoted = upVotesBy.includes(authUser);
   const isThreadDownVoted = downVotesBy.includes(authUser);
@@ -30,10 +30,10 @@ export default function DetailThread({
   return (
     <div className="details">
       <div className="card-text">
-        <p className="card-author">
-          Dibuat oleh
-          <span>{owner.name}</span>
-        </p>
+        <div className="card-detail-author">
+          <img src={owner.avatar} alt={owner.name} />
+          <p>{owner.name}</p>
+        </div>
         <h3 className="card-title">{title}</h3>
         <p className="card-content">{parser(body)}</p>
       </div>
@@ -82,7 +82,7 @@ DetailThread.propTypes = {
   body: PropTypes.string.isRequired,
   owner: PropTypes.shape(ownerShape).isRequired,
   createdAt: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.string).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape).isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   authUser: PropTypes.string.isRequired,

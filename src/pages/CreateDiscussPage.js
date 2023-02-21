@@ -1,21 +1,25 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import useInput from '../hooks/useInput';
-import { asyncCreateThread } from '../states/threads/action';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
+import { asyncCreateThread } from "../states/threads/action";
 
 export default function CreateDisscussPage() {
-  const [title, setTitle] = useInput('');
-  const [body, setBody] = useInput('');
-  const [category, setCategory] = useInput('');
+  const [title, setTitle] = useInput("");
+  const [body, setBody] = useState("");
+  const [category, setCategory] = useInput("");
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const onBodyChangeHandler = (e) => {
+    setBody(e.target.innerHTML);
+  };
+
   function onSubmitNewThread(e) {
     e.preventDefault();
     dispatch(asyncCreateThread({ title, body, category }));
-    navigate('/');
+    navigate("/");
   }
 
   return (
@@ -30,10 +34,15 @@ export default function CreateDisscussPage() {
           Kategori
           <input type="text" value={category} onChange={setCategory} />
         </label>
-        <label htmlFor="body">
-          Diskusi
-          <textarea name="body" id="" value={body} onChange={setBody} />
-        </label>
+        <div className="label">
+          <p>Diskusi</p>
+          <div
+            className="comment-field-input"
+            onInput={onBodyChangeHandler}
+            contentEditable
+            suppressContentEditableWarning
+          />
+        </div>
         <button type="submit" className="btn" onClick={onSubmitNewThread}>
           Buat Diskusi
         </button>

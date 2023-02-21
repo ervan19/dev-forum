@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import {
   HiOutlineThumbUp,
   HiOutlineThumbDown,
   HiThumbUp,
   HiThumbDown,
-} from 'react-icons/hi';
-import { HiArrowUturnLeft } from 'react-icons/hi2';
-import parser from 'html-react-parser';
-import { postedAt } from '../../utils';
+} from "react-icons/hi";
+import { HiArrowUturnLeft } from "react-icons/hi2";
+import parser from "html-react-parser";
+import { postedAt } from "../../utils";
 
 export default function ThreadItem({
   id,
@@ -19,11 +19,11 @@ export default function ThreadItem({
   upVotesBy,
   downVotesBy,
   totalComments,
+  createdAt,
   authUser,
   user,
   upVote,
   downVote,
-  createdAt,
 }) {
   const isThreadUpVoted = upVotesBy.includes(authUser);
   const isThreadDownVoted = downVotesBy.includes(authUser);
@@ -39,7 +39,7 @@ export default function ThreadItem({
   };
 
   return (
-    <div className="card">
+    <section className="card">
       <div className="card-body">
         <div className="card-text">
           <p className="card-author">
@@ -76,13 +76,13 @@ export default function ThreadItem({
           </button>
           {downVotesBy.length}
         </p>
-        <div className="icons-btn reply-thread">
+        <p className="icons-btn reply-thread">
           <HiArrowUturnLeft size={16} fill="#828282" />
-          <p>{totalComments}</p>
-        </div>
+          {totalComments}
+        </p>
         <p className="time-thread">{postedAt(createdAt)}</p>
       </div>
-    </div>
+    </section>
   );
 }
 

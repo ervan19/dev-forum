@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useInput from '../../hooks/useInput';
+import React from "react";
+import PropTypes from "prop-types";
+import useInput from "../../hooks/useInput";
 
-export default function LoginInput({ login }) {
+export default function LoginInput({ login, onLoginKeyDown }) {
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
   return (
@@ -24,6 +24,7 @@ export default function LoginInput({ login }) {
         type="button"
         className="btn"
         onClick={() => login({ email, password })}
+        onKeyUp={(e) => onLoginKeyDown({ e, email, password })}
       >
         Masuk
       </button>
@@ -33,4 +34,5 @@ export default function LoginInput({ login }) {
 
 LoginInput.propTypes = {
   login: PropTypes.func.isRequired,
+  onLoginKeyDown: PropTypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useInput from '../../hooks/useInput';
+import React from "react";
+import PropTypes from "prop-types";
+import useInput from "../../hooks/useInput";
 
 export default function Registernput({ register }) {
   const [name, setName] = useInput();

@@ -1,4 +1,4 @@
-import { ActionType } from './action';
+import { ActionType } from "./action";
 
 function threadDetailReducer(threadDetail = null, action = {}) {
   switch (action.type) {
@@ -18,8 +18,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
         ...threadDetail,
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
           ? threadDetail.downVotesBy.filter(
-            (id) => id !== action.payload.userId,
-          )
+              (id) => id !== action.payload.userId
+            )
           : threadDetail.downVotesBy.concat(action.payload.userId),
       };
     default:

@@ -1,17 +1,23 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import AsideImage from '../components/AsideImage/AsideImage';
-import BrandApp from '../components/BrandApp/BrandApp';
-import FormHeading from '../components/FormHeading/FormHeading';
-import LoginInput from '../components/LoginInput/LoginInput';
-import SwitchFormLink from '../components/SwitchFormLink/SwitchFormLink';
-import { asyncSetAuthUser } from '../states/authUser/action';
+import React from "react";
+import { useDispatch } from "react-redux";
+import AsideImage from "../components/AsideImage/AsideImage";
+import BrandApp from "../components/BrandApp/BrandApp";
+import FormHeading from "../components/FormHeading/FormHeading";
+import LoginInput from "../components/LoginInput/LoginInput";
+import SwitchFormLink from "../components/SwitchFormLink/SwitchFormLink";
+import { asyncSetAuthUser } from "../states/authUser/action";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
 
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
+  };
+
+  const onLoginKeyDown = ({ e, email, password }) => {
+    if (e.key === "Enter") {
+      dispatch(asyncSetAuthUser({ email, password }));
+    }
   };
 
   return (
@@ -23,7 +29,7 @@ export default function LoginPage() {
             heading="Welcome Back! 🖐"
             text="Masukkan informasi yang Anda masukkan saat pendaftaran akun"
           />
-          <LoginInput login={onLogin} />
+          <LoginInput login={onLogin} onLoginKeyDown={onLoginKeyDown} />
           <SwitchFormLink
             text="Belum punya akun?"
             link="Buat Akun"

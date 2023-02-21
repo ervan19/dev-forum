@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveLeaderboards } from "../states/leaderboards/action";
 
 export default function LeaderboardsPage() {
+  const { leaderboards = null } = useSelector((states) => states);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncReceiveLeaderboards(leaderboards));
+  }, [dispatch]);
+
   return (
     <div className="leaderboards">
       <h2>Pengguna Paling Aktif</h2>
@@ -12,13 +21,18 @@ export default function LeaderboardsPage() {
           </tr>
         </thead>
         <tbody>
-          <tr className="list-user">
-            <td className="leaderboard-user">
-              <img src="/avatar.png" alt="avatar" />
-              <p>Hope Point</p>
-            </td>
-            <td>53</td>
-          </tr>
+          {leaderboards.map((leaderboard) => {
+            const { user } = leaderboard;
+            return (
+              <tr className="list-user" key={user.id}>
+                <td className="leaderboard-user user-avatar">
+                  <img src={user.avatar} alt={user.name} />
+                  <p>{user.name}</p>
+                </td>
+                <td>{leaderboard.score}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

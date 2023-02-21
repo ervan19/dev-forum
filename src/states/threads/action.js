@@ -1,12 +1,12 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import api from '../../utils/api';
+import { showLoading, hideLoading } from "react-redux-loading-bar";
+import api from "../../utils/api";
 
 const ActionType = {
-  RECEIVE_THREADS: 'RECEIVE_THREADS',
-  CREATE_THREAD: 'CREATE_THREAD',
-  TOGGLE_UP_VOTE_THREAD: 'TOGGLE_UP_VOTE_THREAD',
-  TOGGLE_DOWN_VOTE_THREAD: 'TOGGLE_DOWN_VOTE_THREAD',
-  NEUTRALIZE_VOTE_THREAD: 'NEUTRALIZE_VOTE_THREAD',
+  RECEIVE_THREADS: "RECEIVE_THREADS",
+  CREATE_THREAD: "CREATE_THREAD",
+  TOGGLE_UP_VOTE_THREAD: "TOGGLE_UP_VOTE_THREAD",
+  TOGGLE_DOWN_VOTE_THREAD: "TOGGLE_DOWN_VOTE_THREAD",
+  NEUTRALIZE_VOTE_THREAD: "NEUTRALIZE_VOTE_THREAD",
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -27,21 +27,21 @@ function createThreadActionCreator(thread) {
   };
 }
 
-function toggleUpVoteActionCreator({ threadsId, userId }) {
+function toggleUpVoteActionCreator({ threadId, userId }) {
   return {
     type: ActionType.TOGGLE_UP_VOTE_THREAD,
     payload: {
-      threadsId,
+      threadId,
       userId,
     },
   };
 }
 
-function toggleDownVoteActionCreator({ threadsId, userId }) {
+function toggleDownVoteActionCreator({ threadId, userId }) {
   return {
     type: ActionType.TOGGLE_DOWN_VOTE_THREAD,
     payload: {
-      threadsId,
+      threadId,
       userId,
     },
   };
@@ -109,22 +109,22 @@ function asyncToggleDownVoteThread(threadId) {
 }
 
 function asyncNeutralizeVoteThread(threadId) {
-  return async (dispacth, getState) => {
-    dispacth(showLoading());
+  return async (dispatch, getState) => {
+    dispatch(showLoading());
 
     const { authUser } = getState();
-    dispacth(toggleNeutralizeVoteActionCreator(threadId, authUser.id));
+    dispatch(toggleNeutralizeVoteActionCreator(threadId, authUser.id));
 
     try {
       await api.neutralizeThreadVote(threadId);
     } catch (error) {
       alert(error.message);
-      dispacth(
-        toggleNeutralizeVoteActionCreator({ threadId, userId: authUser.id }),
+      dispatch(
+        toggleNeutralizeVoteActionCreator({ threadId, userId: authUser.id })
       );
     }
 
-    dispacth(hideLoading());
+    dispatch(hideLoading());
   };
 }
 
