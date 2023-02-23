@@ -161,7 +161,8 @@ nav {
   align-items: center;
 }
 
-.navigation-button, .navigation {
+.navigation-button,
+.navigation {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,8 +177,6 @@ nav {
   width: 28px;
   border-radius: 50%;
 }
-
-
 
 .logout-btn {
   display: flex;
@@ -551,6 +550,17 @@ form > button {
 
 .detail-container .card-tags {
   margin-bottom: 32px;
+}
+
+.comment-length {
+  margin-left: 4px;
+}
+
+.not-comment {
+  padding: 12px 0;
+  font-size: 14px;
+  color: var(--gray-color);
+  font-style: italic;
 }
 
 .card-detail-author {

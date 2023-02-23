@@ -14,12 +14,6 @@ export default function LoginPage() {
     dispatch(asyncSetAuthUser({ email, password }));
   };
 
-  const onLoginKeyDown = ({ e, email, password }) => {
-    if (e.key === "Enter") {
-      dispatch(asyncSetAuthUser({ email, password }));
-    }
-  };
-
   return (
     <div className="login-container">
       <article className="sign-form">
@@ -29,7 +23,7 @@ export default function LoginPage() {
             heading="Welcome Back! 🖐"
             text="Masukkan informasi yang Anda masukkan saat pendaftaran akun"
           />
-          <LoginInput login={onLogin} onLoginKeyDown={onLoginKeyDown} />
+          <LoginInput login={onLogin} />
           <SwitchFormLink
             text="Belum punya akun?"
             link="Buat Akun"

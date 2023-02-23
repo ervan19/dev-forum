@@ -6,7 +6,7 @@ import threadDetailReducer from "./threadDetail/reducer";
 import threadsReducer from "./threads/reducer";
 import usersReducer from "./users/reducer";
 import leaderboardsReducer from "./leaderboards/reducer";
-import commentReducer from "./comment/reducer";
+// import commentReducer from "./comment/reducer";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +15,7 @@ const store = configureStore({
     users: usersReducer,
     threads: threadsReducer,
     threadDetail: threadDetailReducer,
-    comment: commentReducer,
+    // comment: commentReducer,
     leaderboards: leaderboardsReducer,
     loadingBar: loadingBarReducer,
   },

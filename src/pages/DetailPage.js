@@ -7,9 +7,10 @@ import {
   asyncReceiveThreadDetail,
   asyncToggleUpVoteThreadDetail,
   asyncToggleDownVoteThreadDetail,
+  asyncCreateComment,
 } from "../states/threadDetail/action";
 import FormComment from "../components/FormComment/FormComment";
-import { asyncCreateComment } from "../states/comment/action";
+// import { asyncCreateComment } from "../states/comment/action";
 
 export default function DetailPage() {
   const { id } = useParams();
@@ -44,8 +45,6 @@ export default function DetailPage() {
     return null;
   }
 
-  // const { comments } = threadDetail;
-
   return (
     <div className="detail-container">
       <DetailThread
@@ -64,11 +63,18 @@ export default function DetailPage() {
       <div className="comment-section">
         <h3>
           Komentar
-          <span>Test</span>
+          <span className="comment-length">
+            ({threadDetail.comments.length ? threadDetail.comments.length : "0"}
+            )
+          </span>
         </h3>
-        <div className="comments">
-          <CommentCard authUser={authUser.id} {...threadDetail} />
-        </div>
+        {threadDetail.comments.length ? (
+          <div className="comments">
+            <CommentCard authUser={authUser.id} {...threadDetail} />
+          </div>
+        ) : (
+          <p className="not-comment">Tidak ada komentar</p>
+        )}
       </div>
     </div>
   );
